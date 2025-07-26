@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_REST_API_URL = 'http://localhost:8080/api/expenses';
+// console.log('Environment variable:', import.meta.env.VITE_REST_API_URL);
+const BASE_REST_API_URL = import.meta.env.VITE_REST_API_URL;
 
 export const getAllExpenses = () => axios.get(BASE_REST_API_URL);
 
