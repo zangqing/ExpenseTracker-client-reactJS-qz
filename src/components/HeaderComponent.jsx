@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom' // Add this import
 
 const HeaderComponent = () => {
   return (
@@ -6,11 +7,10 @@ const HeaderComponent = () => {
         <header>
             <nav className='navbar navbar-expand-md navbar-dark bg-dark'>
                 <div>
-                    <a href='http://localhost:3000/' className='navbar-brand'>
+                    <Link to="/" className='navbar-brand'>
                         Expense Tracker Application
-                    </a>
+                    </Link>
                 </div>
-
             </nav>
         </header>
     </div>
