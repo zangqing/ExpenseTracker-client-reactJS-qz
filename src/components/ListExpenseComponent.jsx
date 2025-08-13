@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { deleteExpense, getAllExpenses } from '../services/ExpenseService'
 import { useNavigate } from 'react-router-dom'
+import { isAdminUser } from '../services/AuthService'
 
 const ListExpenseComponent = () => {
 
@@ -20,6 +21,8 @@ const ListExpenseComponent = () => {
     const [expenses, setExpenses] = useState([])
 
     const navigator = useNavigate();
+
+    const isAdmin =isAdminUser();
 
     useEffect(() => {
       listExpenses();
@@ -54,7 +57,11 @@ const ListExpenseComponent = () => {
   return (
     <div className='container'>
       <h2 className='text-center'>List of Expenses</h2>
-      <button className='btn btn-primary mb-2' onClick={addNewExpense}>Add Expense</button>
+      {
+        isAdmin && 
+        <button className='btn btn-primary mb-2' onClick={addNewExpense}>Add Expense</button>
+      }
+
       <div>
         <table className='table table-bordered table-striped'>
           <thead>
@@ -71,8 +78,16 @@ const ListExpenseComponent = () => {
                     <td>{expense.name}</td>
                     <td>{expense.amount}</td>
                     <td>
-                      <button className='btn btn-info' onClick={() => updateExpense(expense.id)}>Edit</button>
-                      <button className='btn btn-danger' onClick={() => removeExpense(expense.id)} style={{marginLeft:"10px"}}>Delete</button>
+                      {
+                        isAdmin &&
+                        <button className='btn btn-info' onClick={() => updateExpense(expense.id)}>Edit</button>                      
+                      }
+
+                      {
+                        isAdmin &&
+                        <button className='btn btn-danger' onClick={() => removeExpense(expense.id)} style={{marginLeft:"10px"}}>Delete</button>
+                      }
+                      
                     </td>
                 </tr>
               )
