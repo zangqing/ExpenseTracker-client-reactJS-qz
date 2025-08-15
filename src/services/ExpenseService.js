@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./AuthService";
 
 // console.log('Environment variable:', import.meta.env.VITE_REST_API_URL);
-const BASE_REST_API_URL = import.meta.env.VITE_REST_API_URL;
+const BASE_REST_API_URL = import.meta.env.VITE_REST_API_URL + '/api/expenses';
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {

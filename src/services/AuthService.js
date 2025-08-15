@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const AUTH_REST_API_BASE_URL = "http://localhost:8080/api/auth"
+// console.log('Environment variable:', import.meta.env.VITE_REST_API_URL);
+const AUTH_REST_API_BASE_URL = import.meta.env.VITE_REST_API_URL + '/api/auth'
 
 export const registerAPICall = (registerObj) => axios.post(AUTH_REST_API_BASE_URL + '/register', registerObj);
 
